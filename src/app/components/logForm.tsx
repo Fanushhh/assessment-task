@@ -1,5 +1,5 @@
 import { Form } from "radix-ui";
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { updateDraftField, createDraft, clearDrafts } from "../../features/drafts/draftsSlice";
 
@@ -9,7 +9,7 @@ import { CheckCircledIcon } from "@radix-ui/react-icons"
 import { addLog } from "../../features/logs/logsSlice";
 export function LogForm() {
   const dispatch = useAppDispatch();
-  const [showStatus, setShowStatus] = React.useState(false);
+  const [showStatus, setShowStatus] = useState(false);
   const draft = useAppSelector((state: RootState) => state.drafts.drafts[0]);
   const saveStatus = useAppSelector((state) => state.drafts.status);
 

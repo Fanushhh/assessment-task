@@ -3,6 +3,7 @@ import { Table } from "@radix-ui/themes";
 import { useAppSelector, useAppDispatch } from "../hooks/hooks";
 import { getLogsFromStorage } from "../../features/logs/logsSlice";
 import type { RootState } from "../../app/store";
+import type { ServiceLog } from "../../types";
 
 export const LogTable = () => {
   const dispatch = useAppDispatch();
@@ -92,7 +93,7 @@ export const LogTable = () => {
         </Table.Header>
 
         <Table.Body>
-          {filteredLogs.map((log) => (
+          {filteredLogs.map((log:ServiceLog) => (
             <Table.Row key={log.id}>
               <Table.Cell>{log.providerId}</Table.Cell>
               <Table.Cell>{log.serviceOrder}</Table.Cell>

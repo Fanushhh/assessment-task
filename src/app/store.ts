@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import routeReducer from '../features/routes/routesSlice'
-import logsReducer from '../features/logs/logsSlice'
+import logsReducer from "../features/logs/logsSlice"
 import draftsReducer from '../features/drafts/draftsSlice'
 
 export const store = configureStore({

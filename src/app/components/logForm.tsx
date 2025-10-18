@@ -10,7 +10,6 @@ import { CheckCircledIcon } from "@radix-ui/react-icons"
 export function LogForm() {
 const dispatch = useAppDispatch();
   const [showStatus, setShowStatus] = React.useState(false);
-  // Get the current draft (for this simple form, we’ll just use the first one)
   const draft = useAppSelector((state: RootState) => state.drafts.drafts[0]);
   const saveStatus = useAppSelector((state) => state.drafts.status);
 
@@ -20,6 +19,7 @@ const dispatch = useAppDispatch();
       dispatch(createDraft());
     }
   }, [dispatch, draft]);
+  
   useEffect(() => {
     if (saveStatus === "saved") {
       setShowStatus(true)

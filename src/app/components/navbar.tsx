@@ -1,4 +1,4 @@
-import React from 'react'
+
 import type { RootState } from '../../app/store'
 import { useSelector, useDispatch } from "react-redux"
 import { setRoute } from "../../features/routes/routesSlice"

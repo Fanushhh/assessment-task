@@ -6,10 +6,10 @@ import draftsReducer from '../features/drafts/draftsSlice'
 export const store = configureStore({
   reducer: {
     route: routeReducer,
-    log: logsReducer,
+    logs: logsReducer,
     drafts:draftsReducer,
   },
 })
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

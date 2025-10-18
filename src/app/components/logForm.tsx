@@ -8,7 +8,7 @@ import type { ServiceLog } from "../../types";
 import { CheckCircledIcon } from "@radix-ui/react-icons"
 
 export function LogForm() {
-const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const [showStatus, setShowStatus] = React.useState(false);
   const draft = useAppSelector((state: RootState) => state.drafts.drafts[0]);
   const saveStatus = useAppSelector((state) => state.drafts.status);
@@ -35,7 +35,7 @@ const dispatch = useAppDispatch();
     dispatch(updateDraftField({ id: draft.id, field, value }));
   };
 
-  // Handle submit (convert draft → log)
+  
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (!draft) return;

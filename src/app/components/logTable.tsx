@@ -7,7 +7,7 @@ import type { ServiceLog } from "../../types";
 
 export const LogTable = () => {
   const dispatch = useAppDispatch();
-  const logs = useAppSelector((state: RootState) => state.log.logs);
+  const logs = useAppSelector((state: RootState) => state.logs.logs);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState(""); // planned | unplanned | emergency
@@ -43,7 +43,7 @@ export const LogTable = () => {
 
   return (
     <div className="p-4">
-      {/* Filters */}
+      
       <div className="flex gap-4 mb-4">
         <input
           type="text"
@@ -76,7 +76,6 @@ export const LogTable = () => {
         />
       </div>
 
-      {/* Table */}
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>

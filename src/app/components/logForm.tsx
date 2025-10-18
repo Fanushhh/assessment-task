@@ -5,7 +5,7 @@ import { updateDraftField, createDraft, clearDrafts } from "../../features/draft
 import { addLog } from "../../features/logs/logsSlice";
 import type { RootState } from "../store";
 import type { ServiceLog } from "../../types";
-import { CheckCircledIcon, FaceIcon, ImageIcon, SunIcon } from "@radix-ui/react-icons"
+import { CheckCircledIcon } from "@radix-ui/react-icons"
 
 export function LogForm() {
 const dispatch = useAppDispatch();

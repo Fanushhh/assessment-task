@@ -5,6 +5,7 @@ import {
   deleteDraft,
   clearDrafts,
 } from "../../features/drafts/draftsSlice";
+import { addLog } from "../../features/logs/logsSlice";
 import type { RootState } from "../../app/store";
 import { DraftEditDialog } from "./editLogModal";
 
@@ -12,7 +13,7 @@ export const DraftsTable = () => {
     const [editingDraftId, setEditingDraftId] = useState<string | null>(null);
   const dispatch = useAppDispatch();
   const drafts = useAppSelector((state: RootState) => state.drafts.drafts);
-
+  const currentDraft = drafts.find(draft => draft.id === editingDraftId);
   // Delete all drafts
   const handleClearAll = () => {
     if (window.confirm("Are you sure you want to delete all drafts?")) {
@@ -24,6 +25,8 @@ export const DraftsTable = () => {
     
   }
   const handleClose = () => {
+    dispatch(addLog(currentDraft!));
+    dispatch(deleteDraft(currentDraft!.id));
     setEditingDraftId(null);
     
   }

@@ -2,23 +2,23 @@ import { Form } from "radix-ui";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { updateDraftField, createDraft, clearDrafts } from "../../features/drafts/draftsSlice";
-
+import { useDebounce } from "../hooks/useDebounce";
 import type { RootState } from "../store";
 import type { ServiceLog } from "../../types";
 import { CheckCircledIcon } from "@radix-ui/react-icons"
 import { addLog } from "../../features/logs/logsSlice";
+import * as React from "react";
+
 export function LogForm() {
   const dispatch = useAppDispatch();
   const [showStatus, setShowStatus] = useState(false);
   const draft = useAppSelector((state: RootState) => state.drafts.drafts[0]);
   const saveStatus = useAppSelector((state) => state.drafts.status);
-
-  // Create a draft on mount if none exists
-  useEffect(() => {
-    if (!draft) {
-      dispatch(createDraft());
-    }
-  }, [dispatch, draft]);
+  const [pendingChanges, setPendingChanges] = React.useState<{
+    field: keyof ServiceLog;
+    value: string | number;
+} | null>(null);
+  
   
   useEffect(() => {
     if (saveStatus === "saved") {
@@ -31,9 +31,22 @@ export function LogForm() {
 
   // Handle autosave as user types
   const handleChange = (field: keyof ServiceLog, value: string | number) => {
-    if (!draft) return;
-    dispatch(updateDraftField({ id: draft.id, field, value }));
+    setPendingChanges({ field, value });
+    dispatch(updateDraftField({ id: draft.id, field, value }))
   };
+  useDebounce(
+    () => {
+        if (pendingChanges && draft) {
+            dispatch(updateDraftField({ 
+                id: draft.id, 
+                field: pendingChanges.field, 
+                value: pendingChanges.value 
+            }));
+        }
+    },
+    500,
+    [pendingChanges]
+);
 
   
   const handleSubmit = (event: React.FormEvent) => {

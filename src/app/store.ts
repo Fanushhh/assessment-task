@@ -3,7 +3,7 @@ import routeReducer from '../features/routes/routesSlice'
 import logsReducer from "../features/logs/logsSlice"
 import draftsReducer from '../features/drafts/draftsSlice'
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     route: routeReducer,
     logs: logsReducer,
@@ -13,3 +13,5 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export default store;

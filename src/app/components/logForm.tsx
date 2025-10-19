@@ -1,7 +1,7 @@
 import { Form } from "radix-ui";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
-import { updateDraftField, createDraft, clearDrafts } from "../../features/drafts/draftsSlice";
+import { updateDraftField, clearDrafts, createDraft } from "../../features/drafts/draftsSlice";
 import { useDebounce } from "../hooks/useDebounce";
 import type { RootState } from "../store";
 import type { ServiceLog } from "../../types";
@@ -18,7 +18,12 @@ export function LogForm() {
     field: keyof ServiceLog;
     value: string | number;
 } | null>(null);
-  
+  // create draft on mount
+  useEffect(() => {
+    if (!draft) {
+      dispatch(createDraft());
+    }
+  }, [dispatch, draft]);
   
   useEffect(() => {
     if (saveStatus === "saved") {
@@ -34,6 +39,7 @@ export function LogForm() {
     setPendingChanges({ field, value });
     dispatch(updateDraftField({ id: draft.id, field, value }))
   };
+  
   useDebounce(
     () => {
         if (pendingChanges && draft) {
@@ -47,7 +53,6 @@ export function LogForm() {
     500,
     [pendingChanges]
 );
-
   
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -65,7 +70,7 @@ export function LogForm() {
     alert("Service log saved successfully!");
   };
 
-  if (!draft) return null; // Wait for initial draft to be created
+  if(!draft) return null;
   
 
   return (
@@ -298,7 +303,6 @@ export function LogForm() {
           <button className="mt-2.5 box-border inline-flex h-[35px] w-full items-center justify-center rounded bg-white px-[15px] font-medium leading-none text-violet11 shadow-[0_2px_10px] shadow-blackA4 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none">
             Save log
           </button>
-           
         </Form.Submit>
         {showStatus && <p className="text-sm italic text-gray-500 mt-2 text-green-500 ml-1 flex my-4">
           {saveStatus === "saved" && <CheckCircledIcon  className="mr-2"/>}

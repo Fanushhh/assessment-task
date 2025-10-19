@@ -11,7 +11,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import { addLog } from "../logs/logsSlice";
 import type { RootState } from "../../app/store";
-interface DraftState {
+export interface DraftState {
   drafts: ServiceLog[];
   status: "idle" | "saving" | "saved";
 }
@@ -66,6 +66,7 @@ const draftsSlice = createSlice({
         state.status = "saving";
         saveDraftToStorage(draft.id, draft);
         state.status = "saved";
+       
       }
     },
 

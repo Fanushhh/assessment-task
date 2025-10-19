@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 export type RoutesState = "/" | "drafts" | "log-table";
 
-interface RouteSliceState {
+export interface RouteSliceState {
   currentRoute: RoutesState;
 }
 

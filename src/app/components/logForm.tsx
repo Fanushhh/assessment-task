@@ -6,7 +6,7 @@ import { useDebounce } from "../hooks/useDebounce";
 import type { RootState } from "../store";
 import type { ServiceLog } from "../../types";
 import { CheckCircledIcon } from "@radix-ui/react-icons"
-import { addLog } from "../../features/logs/logsSlice";
+import { addLog } from "../../features/logsSlice/logsSlice";
 import * as React from "react";
 
 export function LogForm() {

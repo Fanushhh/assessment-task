@@ -9,7 +9,7 @@ import {
 } from "../../app/utils/storage"
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
-import { addLog } from "../logs/logsSlice";
+import { addLog } from "../logsSlice/logsSlice";
 import type { RootState } from "../../app/store";
 export interface DraftState {
   drafts: ServiceLog[];

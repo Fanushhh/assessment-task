@@ -5,7 +5,7 @@ import {
   deleteDraft,
   clearDrafts,
 } from "../../features/drafts/draftsSlice";
-import { addLog } from "../../features/logs/logsSlice";
+import { addLog } from "../../features/logsSlice/logsSlice";
 import type { RootState } from "../../app/store";
 import { DraftEditDialog } from "./editLogModal";
 

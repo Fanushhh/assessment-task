@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Table } from "@radix-ui/themes";
 import { useAppSelector, useAppDispatch } from "../hooks/hooks";
-import { getLogsFromStorage } from "../../features/logs/logsSlice";
+import { getLogsFromStorage } from "../../features/logsSlice/logsSlice";
 import type { RootState } from "../../app/store";
 import type { ServiceLog } from "../../types";
 
